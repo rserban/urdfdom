@@ -7,13 +7,12 @@ macro(add_urdfdom_library)
     ${add_urdfdom_library_SOURCES})
   target_include_directories(${add_urdfdom_library_LIBNAME} PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
-    ${TinyXML2_INCLUDE_DIR})
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
   target_link_libraries(${add_urdfdom_library_LIBNAME} PUBLIC
     ${add_urdfdom_library_LINK}
     ${console_bridge_link_libs}
     ${urdfdom_headers_link_libs}
-    ${TinyXML2_LIBRARY})
+    tinyxml2::tinyxml2)
   if(NOT DISABLE_TINYXML_SUPPORT)
     target_include_directories(${add_urdfdom_library_LIBNAME} SYSTEM PUBLIC
       ${TinyXML_INCLUDE_DIRS})
@@ -84,6 +83,7 @@ target_link_libraries(urdf_parser INTERFACE
   urdfdom_model
   urdfdom_sensor
   urdfdom_world)
+target_link_libraries(urdf_parser INTERFACE tinyxml2::tinyxml2)  
 
 # --------------------------------
 
