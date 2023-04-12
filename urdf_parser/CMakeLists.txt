@@ -68,13 +68,6 @@ add_urdfdom_library(
   LINK
     urdfdom_model)
 
-add_urdfdom_library(
-  LIBNAME
-    urdfdom_model_state
-  SOURCES
-    src/urdf_model_state.cpp
-    src/twist.cpp)
-
 add_library(urdf_parser INTERFACE)
 target_include_directories(urdf_parser INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -125,7 +118,6 @@ INSTALL(
   urdfdom_model
   urdfdom_world
   urdfdom_sensor
-  urdfdom_model_state
   urdf_parser
   EXPORT
   urdfdom
